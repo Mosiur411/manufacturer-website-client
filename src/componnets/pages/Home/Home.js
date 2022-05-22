@@ -1,4 +1,6 @@
 import React from 'react';
+import Helmet from 'react-helmet';
+import ReactHelmet from '../../hook/ReactHelmet';
 import Contact from './Contact';
 import HomeCard from './HomeCard';
 import HomeCarousel from './HomeCarousel ';
@@ -9,6 +11,7 @@ import Stat from './Stat';
 const Home = () => {
     return (
         <div >
+            <ReactHelmet>Home</ReactHelmet>
             <HomeCarousel></HomeCarousel>
             <div className='md:px-20'>
                 <Service></Service>
