@@ -12,8 +12,9 @@ import Login from './componnets/pages/Login/Login';
 import Register from './componnets/pages/Register/Register';
 import { ToastContainer } from 'react-toastify';
 import Dashboard from './componnets/pages/Dashboard/Dashboard';
+import RequireAuth from './componnets/shared/RequireAuth';
 function App() {
-  useEffect(()=>{
+  useEffect(() => {
     AOS.init();
   })
   return (
@@ -22,13 +23,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="blog" element={<Blog />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dashboard" element={<RequireAuth>
+          <Dashboard />
+        </RequireAuth>} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer></Footer>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import login from '../../../assets/login.png';
 import google from '../../../assets/gogle.png'
 import auth from '../../../firebase.init';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 const Login = () => {
     /* ================== auth ======================  */
@@ -20,9 +20,11 @@ const Login = () => {
         }
     };
     const Navigate = useNavigate()
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     if (user || GoogleUser) {
         toast(`Hello email Verify code `)
-        Navigate('/')
+        Navigate(from, { replace: true });
     }
     return (
         <div>

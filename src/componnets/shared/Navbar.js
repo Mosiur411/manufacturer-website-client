@@ -10,7 +10,7 @@ const Navbar = () => {
     /* ================= auth =================== */
     const [user, loading, error] = useAuthState(auth);
     if (loading) {
-       return <Spinner></Spinner>;
+        return <Spinner></Spinner>;
     }
     const logout = () => {
         toast("success logout")
@@ -20,7 +20,9 @@ const Navbar = () => {
     const NavbarMenu = [
         <li key='1'><NavLink to='/'>Home</NavLink></li>,
         <li key='2'><NavLink to='/blog'>Blog</NavLink></li>,
-        <li key='3'>{user && <NavLink to='/dashboard'>Dashboard</NavLink>}</li>
+        <li key='3'>{user && <NavLink to='/dashboard'>Dashboard</NavLink>}</li>,
+        <label key='4' for="my-drawer-2" className='my-5 btn bg-primary-content lg:hidden'>Open Dashboard</label>
+
     ]
     const Profile = [
         <li key='1'><NavLink to='/myProfile'>My Profile</NavLink></li>,
