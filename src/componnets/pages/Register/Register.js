@@ -1,11 +1,36 @@
-import React from 'react';
+import React, { } from 'react';
 import ReactHelmet from '../../hook/ReactHelmet';
 import Signup from '../../../assets/register.png';
 import google from '../../../assets/gogle.png'
 import { useForm } from 'react-hook-form';
+import auth from '../../../firebase.init';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import Spinner from '../../shared/Spinner';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 const Register = () => {
+    /* ======================== auth  =========================  */
+    const [createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [signInWithGoogle, GoogleUser, GoogleLoading, GoogleError] = useSignInWithGoogle(auth);
+    const [updateProfile, updating, UPerror] = useUpdateProfile(auth);
+    const RegisterProfile = async data => {
+        const photoURL = data.images;
+        const displayName = data.name;
+        const email = data.data;
+        const password = data.password;
+        await createUserWithEmailAndPassword(email, password)
+        await updateProfile({ displayName, photoURL })
+    }
+    /*  ========================= useNavigate ============ */
+    const Navigate = useNavigate()
+    if (user || GoogleUser) {
+        toast(`Hello email Verify code `)
+        Navigate('/')
+    }
+    /* ================== input value   */
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit =async data => {
+    const onSubmit = async data => {
         const image = data?.images[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -13,18 +38,24 @@ const Register = () => {
             method: 'POST',
             body: formData
         })
-        .then(res=>res.json())
-        .then(result=>{
-            if(result?.data){
-                const images =result?.data?.url;
-                const name=data.name;
-                const email=data.email;
-                const password=data.password;
-                console.log(images,name,email,password)
-
-            }
-        })
+            .then(res => res.json())
+            .then(result => {
+                if (result?.data) {
+                    const images = result?.data?.url;
+                    const name = data.name;
+                    const email = data.email;
+                    const password = data.password;
+                    if (email && password && images) {
+                        RegisterProfile({ data: email, password, images, name })
+                    }
+                }
+            })
     };
+
+
+    if (loading) {
+        return <Spinner></Spinner>;
+    }
     return (
         <div className='mb-10'>
             <ReactHelmet>Register</ReactHelmet>
@@ -34,18 +65,18 @@ const Register = () => {
                         <div>
                             <img className=' md:w-[396px] lg:w-[596px] mx-auto' src={Signup} alt="Signup images" />
                         </div>
-                        <div class="card w-[326px] md:w-96 bg-base-100 mx-auto shadow-2xl">
-                            <div class="card-body">
+                        <div className="card w-[326px] md:w-96 bg-base-100 mx-auto shadow-2xl">
+                            <div className="card-body">
                                 <h1 className='text-center'>Signup</h1>
                                 <div>
                                     <form onSubmit={handleSubmit(onSubmit)}>
-                                        <div class="form-control w-full max-w-xs">
-                                            <label class="label">
-                                                <span class="label-text">Name</span>
+                                        <div className="form-control w-full max-w-xs">
+                                            <label className="label">
+                                                <span className="label-text">Name</span>
                                             </label>
                                             <input type="text"
                                                 placeholder="your name"
-                                                class="input input-bordered w-full max-w-xs"
+                                                className="input input-bordered w-full max-w-xs"
                                                 {...register("name", {
                                                     required: {
                                                         value: true,
@@ -54,17 +85,17 @@ const Register = () => {
                                                 }
                                                 )}
                                             />
-                                            <label class="label">
+                                            <label className="label">
                                                 {errors.name?.type === 'required' && <span className=' text-red-600'>{errors.name.message}</span>}
                                             </label>
                                         </div>
-                                        <div class="form-control w-full max-w-xs">
-                                            <label class="label">
-                                                <span class="label-text">Email</span>
+                                        <div className="form-control w-full max-w-xs">
+                                            <label className="label">
+                                                <span className="label-text">Email</span>
                                             </label>
                                             <input type="email"
                                                 placeholder="valid email"
-                                                class="input input-bordered w-full max-w-xs"
+                                                className="input input-bordered w-full max-w-xs"
                                                 {...register("email", {
                                                     required: {
                                                         value: true,
@@ -73,17 +104,17 @@ const Register = () => {
                                                 }
                                                 )}
                                             />
-                                            <label class="label">
+                                            <label className="label">
                                                 {errors.email?.type === 'required' && <span className=' text-red-600'>{errors.email.message}</span>}
                                             </label>
                                         </div>
-                                        <div class="form-control w-full max-w-xs">
-                                            <label class="label">
-                                                <span class="label-text">Password</span>
+                                        <div className="form-control w-full max-w-xs">
+                                            <label className="label">
+                                                <span className="label-text">Password</span>
                                             </label>
                                             <input type="password"
                                                 placeholder="your password"
-                                                class="input input-bordered w-full max-w-xs"
+                                                className="input input-bordered w-full max-w-xs"
                                                 {...register("password", {
                                                     required: {
                                                         value: true,
@@ -96,18 +127,18 @@ const Register = () => {
                                                 }
                                                 )}
                                             />
-                                            <label class="label">
+                                            <label className="label">
                                                 {errors.password?.type === 'required' && <span className=' text-red-600'>{errors.password.message}</span>}
                                                 {errors.password?.type === 'minLength' && <span className=' text-red-600'>{errors.password.message}</span>}
                                             </label>
                                         </div>
-                                        <div class="form-control w-full max-w-xs">
-                                            <label class="label">
-                                                <span class="label-text">profile</span>
+                                        <div className="form-control w-full max-w-xs">
+                                            <label className="label">
+                                                <span className="label-text">profile</span>
                                             </label>
                                             <input type="file"
 
-                                                class="input input-bordered w-full max-w-xs"
+                                                className="input input-bordered w-full max-w-xs"
                                                 {...register("images", {
                                                     required: {
                                                         value: true,
@@ -116,14 +147,14 @@ const Register = () => {
                                                 }
                                                 )}
                                             />
-                                            <label class="label">
+                                            <label className="label">
                                                 {errors.images?.type === 'required' && <span className=' text-red-600'>{errors.images.message}</span>}
                                             </label>
                                         </div>
-                                        <input className='form-control w-full max-w-xs btn' type="submit" value='Login' />
+                                        <input className='form-control w-full max-w-xs btn' type="submit" value='Register' />
 
                                     </form>
-                                    <button class="btn mt-5 w-full btn-outline btn-secondary">
+                                    <button onClick={() => signInWithGoogle()} className="btn mt-5 w-full btn-outline btn-secondary">
                                         <img className='w-[32px]' src={google} alt="" />
                                         <h1 className='pl-2'>CONTINUE WITH GOOGLE</h1>
                                     </button>

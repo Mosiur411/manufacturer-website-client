@@ -1,14 +1,30 @@
-import React from 'react';
+import { signOut } from 'firebase/auth';
+import React, { } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import logo from '../../assets/Logo.png'
+import auth from '../../firebase.init';
+import Spinner from './Spinner';
 const Navbar = () => {
+    /* ================= auth =================== */
+    const [user, loading, error] = useAuthState(auth);
+    if (loading) {
+       return <Spinner></Spinner>;
+    }
+    const logout = () => {
+        toast("success logout")
+        signOut(auth);
+    };
+    /*======================== Router Link ==================== */
     const NavbarMenu = [
         <li key='1'><NavLink to='/'>Home</NavLink></li>,
-        <li key='2'><NavLink to='/blog'>Blog</NavLink></li>
+        <li key='2'><NavLink to='/blog'>Blog</NavLink></li>,
+        <li key='3'>{user && <NavLink to='/dashboard'>Dashboard</NavLink>}</li>
     ]
     const Profile = [
         <li key='1'><NavLink to='/myProfile'>My Profile</NavLink></li>,
-        <li key='2'><NavLink to='/logout'>Logout</NavLink></li>
+        <li onClick={logout} key='2'><NavLink to='/'>Logout</NavLink></li>
     ]
     return (
         <div className="navbar bg-white shadow md:px-20 sticky top-0 z-50">
@@ -21,7 +37,7 @@ const Navbar = () => {
                         {NavbarMenu}
                     </ul>
                 </div>
-                <Link to='/'><img src={logo} className='w-28'  alt="Logo" /></Link>
+                <Link to='/'><img src={logo} className='w-28' alt="Logo" /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0 gap-5">
@@ -29,16 +45,20 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div className="dropdown dropdown-end">
-                    <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img src="https://api.lorem.space/image/face?hash=33791" alt='images' />
-                        </div>
-                    </label>
-                    <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                       {Profile}
-                    </ul>
-                </div>
+                {
+                    user?.photoURL ? <div className="dropdown dropdown-end">
+                        <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img src={user?.photoURL} alt='images' />
+                            </div>
+                        </label>
+                        <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                            {Profile}
+                        </ul>
+                    </div> : <button className='btn'>
+                        <Link to='login'>Login</Link>
+                    </button>
+                }
 
             </div>
         </div>

@@ -10,6 +10,8 @@ import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import Login from './componnets/pages/Login/Login';
 import Register from './componnets/pages/Register/Register';
+import { ToastContainer } from 'react-toastify';
+import Dashboard from './componnets/pages/Dashboard/Dashboard';
 function App() {
   useEffect(()=>{
     AOS.init();
@@ -20,11 +22,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="blog" element={<Blog />} />
-        <Route path="login" element={<Login />} />
+        <Route path="dashboard" element={<Dashboard />} />
         <Route path="register" element={<Register />} />
+        <Route path="login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer></Footer>
+      <ToastContainer/>
     </div>
   );
 }
