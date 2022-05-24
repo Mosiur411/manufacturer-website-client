@@ -8,6 +8,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import Spinner from '../../shared/Spinner';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import UserToken from '../../shared/UserToken';
 
 const Register = () => {
     /* ======================== auth  =========================  */
@@ -22,12 +23,7 @@ const Register = () => {
         await createUserWithEmailAndPassword(email, password)
         await updateProfile({ displayName, photoURL })
     }
-    /*  ========================= useNavigate ============ */
-    const Navigate = useNavigate()
-    if (user || GoogleUser) {
-        toast(`Hello email Verify code `)
-        Navigate('/')
-    }
+
     /* ================== input value   */
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = async data => {
@@ -52,10 +48,17 @@ const Register = () => {
             })
     };
 
+    /*  ========================= useNavigate ============ */
 
+    const Navigate = useNavigate()
+    const Token = UserToken(user || GoogleUser);
+    if (Token.length>10) {
+        Navigate('/')
+    }
     if (loading) {
         return <Spinner></Spinner>;
     }
+
     return (
         <div className='mb-10'>
             <ReactHelmet>Register</ReactHelmet>

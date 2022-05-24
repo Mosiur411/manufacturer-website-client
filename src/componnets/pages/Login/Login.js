@@ -7,6 +7,7 @@ import auth from '../../../firebase.init';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import UserToken from '../../shared/UserToken';
 const Login = () => {
     /* ================== auth ======================  */
     const [signInWithEmailAndPassword,user,loadingerror,] = useSignInWithEmailAndPassword(auth);
@@ -22,10 +23,11 @@ const Login = () => {
     const Navigate = useNavigate()
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    if (user || GoogleUser) {
-        toast(`Hello email Verify code `)
+    const Token =UserToken(user || GoogleUser);
+    if (Token.length>10) {
         Navigate(from, { replace: true });
     }
+
     return (
         <div>
             <ReactHelmet>Login</ReactHelmet>
