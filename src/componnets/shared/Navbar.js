@@ -25,7 +25,7 @@ const Navbar = () => {
 
     ]
     const Profile = [
-        <li key='1'><NavLink to='/myProfile'>My Profile</NavLink></li>,
+        <li key='1'><NavLink to='dashboard/myProfile'>My Profile</NavLink></li>,
         <li onClick={logout} key='2'><NavLink to='/'>Logout</NavLink></li>
     ]
     return (

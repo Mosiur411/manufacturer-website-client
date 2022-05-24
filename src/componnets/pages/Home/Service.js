@@ -1,49 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Service = () => {
+    const [services, setServices] = useState([])
+    useEffect(() => {
+        fetch('http://localhost:5000/service', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                setServices(data)
+            })
+    },[])
     return (
         <div>
             <h1 className=' my-20 text-4xl text-center text-primary font-bold'>BEST SELLER PRODUCT</h1>
             <div className=' max-w-7xl mx-auto px-10 grid grid-cols-3 gap-5 my-10'>
-                <div className="card bg-base-100 shadow-xl">
-                    <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-                    <div  className="card-body">
-                        <h2 className="card-title text-center">
-                            Shoes
-                        </h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <p>Available Stok : <span>785</span></p>
-                        <p>Order Quantity : <span>75</span></p>
-                        <button className='btn'>Buy Now</button>
-                    </div>
-                </div>
+                {
+                    services.map(service => <div className="card bg-base-100 shadow-xl">
+                        <div className='w-full h-48 bg-red-800 '>
+                            <img className='w-full h-48' src={service.images} alt="Shoes" />
+                        </div>
+                        <div className="card-body">
+                            <h2 className="card-title text-center">
+                                {service.name}
+                            </h2>
+                            <p>Available Stok : <span>{service.AvailableStok}</span></p>
+                            <p>Order Quantity : <span>{ }Quantity</span></p>
+                            <p>Price:$ {service.prices}</p>
+                            <p>Description:{service.Message}</p>
+                            <button className='btn'>Buy Now</button>
 
-                <div className="card bg-base-100 shadow-xl">
-                    <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title text-center">
-                            Shoes
-                        </h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <p>Available Stok : <span>785</span></p>
-                        <p>Order Quantity : <span>75</span></p>
-                        <button className='btn'>Buy Now</button>
-                    </div>
-                </div>
-
-
-                <div className="card bg-base-100 shadow-xl">
-                    <figure><img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title text-center">
-                            Shoes
-                        </h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <p>Available Stok : <span>785</span></p>
-                        <p>Order Quantity : <span>75</span></p>
-                        <button className='btn'>Buy Now</button>
-                    </div>
-                </div>
+                        </div>
+                    </div>)
+                }
             </div>
         </div>
     );
