@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
 import ReactHelmet from '../../hook/ReactHelmet';
 import Signup from '../../../assets/register.png';
 import google from '../../../assets/gogle.png'
@@ -23,7 +23,6 @@ const Register = () => {
         await createUserWithEmailAndPassword(email, password)
         await updateProfile({ displayName, photoURL })
     }
-
     /* ================== input value   */
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = async data => {
@@ -49,12 +48,15 @@ const Register = () => {
     };
 
     /*  ========================= useNavigate ============ */
-
     const Navigate = useNavigate()
-    const Token = UserToken(user || GoogleUser);
-    if (Token.length>10) {
-        Navigate('/')
-    }
+    const [Token] = UserToken(user || GoogleUser);
+    useEffect(() => {
+        if (Token) {
+            toast.success('Register Your SuccessFully')
+            Navigate('/')
+        }
+    })
+
     if (loading) {
         return <Spinner></Spinner>;
     }

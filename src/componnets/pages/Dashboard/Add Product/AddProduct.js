@@ -33,7 +33,7 @@ const AddProduct = () => {
                         .then(response => response.json())
                         .then(data => {
                             if (data) {
-                                toast('Product Add ')
+                                toast.success('AddProduct SuccessFully')
                                 reset()
                             }
                         })

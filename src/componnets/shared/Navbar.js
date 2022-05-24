@@ -13,7 +13,7 @@ const Navbar = () => {
         return <Spinner></Spinner>;
     }
     const logout = () => {
-        toast("success logout")
+        toast.success("SuccessFully Logout")
         signOut(auth);
         localStorage.removeItem('AssesToken')
     };
@@ -58,7 +58,7 @@ const Navbar = () => {
                             {Profile}
                         </ul>
                     </div> : <button className='btn'>
-                        <Link to='login'>Login</Link>
+                        <Link to='/login'>Login</Link>
                     </button>
                 }
 

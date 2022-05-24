@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import ReactHelmet from '../../hook/ReactHelmet';
 import login from '../../../assets/login.png';
@@ -10,23 +10,26 @@ import { toast } from 'react-toastify';
 import UserToken from '../../shared/UserToken';
 const Login = () => {
     /* ================== auth ======================  */
-    const [signInWithEmailAndPassword,user,loadingerror,] = useSignInWithEmailAndPassword(auth);
+    const [signInWithEmailAndPassword, user, loadingerror,] = useSignInWithEmailAndPassword(auth);
     const [signInWithGoogle, GoogleUser, GoogleLoading, GoogleError] = useSignInWithGoogle(auth);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = data => {
         const email = data.email;
         const password = data.password;
-        if(email && password){
-            signInWithEmailAndPassword(email,password)
+        if (email && password) {
+            signInWithEmailAndPassword(email, password)
         }
     };
     const Navigate = useNavigate()
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    const Token =UserToken(user || GoogleUser);
-    if (Token.length>10) {
-        Navigate(from, { replace: true });
-    }
+    const [Token] = UserToken(user || GoogleUser);
+    useEffect(() => {
+        if (Token) {
+            toast.success("SuccessFully Login container")
+            Navigate(from, { replace: true });
+        }
+    })
 
     return (
         <div>

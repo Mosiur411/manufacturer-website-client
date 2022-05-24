@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Service = () => {
     const [services, setServices] = useState([])
+    const Navigate=useNavigate()
     useEffect(() => {
         fetch('http://localhost:5000/service', {
             method: 'GET',
@@ -31,7 +33,7 @@ const Service = () => {
                             <p>Order Quantity : <span>{ }Quantity</span></p>
                             <p>Price:$ {service.prices}</p>
                             <p>Description:{service.Message}</p>
-                            <button className='btn'>Buy Now</button>
+                            <button onClick={()=>Navigate(`purchasePages/${service._id}`)} className='btn'>Buy Now</button>
 
                         </div>
                     </div>)

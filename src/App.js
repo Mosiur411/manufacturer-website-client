@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import Login from './componnets/pages/Login/Login';
 import Register from './componnets/pages/Register/Register';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './componnets/pages/Dashboard/Dashboard';
 import RequireAuth from './componnets/shared/RequireAuth';
 import AddReview from './componnets/pages/Dashboard/Add Review/AddReview';
@@ -20,6 +21,7 @@ import ManageOrder from './componnets/pages/Dashboard/Manage Order/ManageOrder';
 import AddProduct from './componnets/pages/Dashboard/Add Product/AddProduct';
 import ManageProducts from './componnets/pages/Dashboard/Manage Products/ManageProducts';
 import MakeAdmin from './componnets/pages/Dashboard/Make Admin/MakeAdmin';
+import PurchasePages from './componnets/pages/Home/PurchasePages';
 function App() {
   useEffect(() => {
     AOS.init();
@@ -30,6 +32,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="purchasePages/:id" element={<RequireAuth>
+          <PurchasePages />
+        </RequireAuth>} />
         <Route path="dashboard" element={<RequireAuth>
           <Dashboard></Dashboard>
         </RequireAuth>}>
