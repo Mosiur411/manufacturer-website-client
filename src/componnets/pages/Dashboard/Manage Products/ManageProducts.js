@@ -35,7 +35,7 @@ const ManageProducts = () => {
         <div>
             <h1 className='text-center font-mono text-3xl text-green-600'>Manage Products</h1>
             <div className='text-center'>
-                <div class="overflow-x-auto text-cente">
+                <div class="overflow-x-auto text-center">
                     <table class="table table-zebra w-full">
                         <thead>
                             <tr>

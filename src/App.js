@@ -22,6 +22,7 @@ import AddProduct from './componnets/pages/Dashboard/Add Product/AddProduct';
 import ManageProducts from './componnets/pages/Dashboard/Manage Products/ManageProducts';
 import MakeAdmin from './componnets/pages/Dashboard/Make Admin/MakeAdmin';
 import PurchasePages from './componnets/pages/Home/PurchasePages';
+import Payment from './componnets/pages/Dashboard/Payment/Payment';
 function App() {
   useEffect(() => {
     AOS.init();
@@ -40,6 +41,7 @@ function App() {
         </RequireAuth>}>
           <Route path="" element={<MyOrders/>}/>
           <Route path="addReview" element={<AddReview/>}/>
+          <Route path="payment/:id" element={<Payment/>}/>
           <Route path="myProfile" element={<MyProfile/>}/>
           <Route path="manageOrder" element={<ManageOrder/>}/>
           <Route path="addProduct" element={<AddProduct/>}/>
