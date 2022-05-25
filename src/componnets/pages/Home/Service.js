@@ -30,7 +30,7 @@ const Service = () => {
                                 {service.name}
                             </h2>
                             <p>Available Stok : <span>{service.AvailableStok}</span></p>
-                            <p>Order Quantity : <span>{ }Quantity</span></p>
+                            <p>Order Quantity : <span>{service.Quantity}</span></p>
                             <p>Price:$ {service.prices}</p>
                             <p>Description:{service.Message}</p>
                             <button onClick={()=>Navigate(`purchasePages/${service._id}`)} className='btn'>Buy Now</button>
