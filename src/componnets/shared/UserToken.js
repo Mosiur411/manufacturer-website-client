@@ -7,7 +7,7 @@ const UserToken = user => {
             const email = user?.user?.email;
             console.log(email)
             const userEmail = { email: email }
-            fetch(`http://localhost:5000/email/${email}`, {
+            fetch(`https://vast-ridge-73699.herokuapp.com/email/${email}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

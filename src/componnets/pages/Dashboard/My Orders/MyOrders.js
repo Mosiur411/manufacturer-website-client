@@ -9,7 +9,7 @@ const MyOrders = () => {
     const Navigate = useNavigate()
     const [UserOrder, setUserOrder] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/service/order/user/${user.email}`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/service/order/user/${user.email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ const MyOrders = () => {
             })
     }, [user])
     const MyOrderDelete = (id) => {
-        fetch(`http://localhost:5000/service/payment/delete/${id}`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/service/payment/delete/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

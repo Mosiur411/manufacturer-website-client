@@ -18,7 +18,7 @@ const MyProfile = () => {
         const Date = event.target.Date.value;
         const Profile = { Education: Education, Address: Address, Number: number, Date: Date }
         if (Profile) {
-            fetch(`http://localhost:5000/email/user/${user.email}`, {
+            fetch(`https://vast-ridge-73699.herokuapp.com/email/user/${user.email}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ const MyProfile = () => {
         }
     }
     useEffect(() => {
-        fetch(`http://localhost:5000/email/MyProfile/${user.email}`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/email/MyProfile/${user.email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

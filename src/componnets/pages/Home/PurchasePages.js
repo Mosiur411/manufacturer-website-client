@@ -11,7 +11,7 @@ const PurchasePages = () => {
     const [Services, setServices] = useState({})
     const { name, images, AvailableStok, Quantity, prices, Message } = Services
     useEffect(() => {
-        fetch(`http://localhost:5000/service/${id}`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/service/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const PurchasePages = () => {
         if (Available >= Order && Order >= value) {
             const StokUpdate = parseInt(AvailableStok) - Order
             if (StokUpdate) {
-                fetch(`http://localhost:5000/service/Update/${id}`, {
+                fetch(`https://vast-ridge-73699.herokuapp.com/service/Update/${id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ const PurchasePages = () => {
                             const Pic = Order;
                             const Number = Contact;
                             const ProductOrder = { email, OrderName, OrderImages, OrderPrice, Pic, Number }
-                            fetch(`http://localhost:5000/service/order`, {
+                            fetch(`https://vast-ridge-73699.herokuapp.com/service/order`, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'

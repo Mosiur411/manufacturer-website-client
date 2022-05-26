@@ -5,7 +5,7 @@ const ManageProducts = () => {
     const [services, setServices] = useState([])
     const [Delete, setDelete] = useState(false)
     useEffect(() => {
-        fetch('http://localhost:5000/service', {
+        fetch('https://vast-ridge-73699.herokuapp.com/service', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ const ManageProducts = () => {
             })
     }, [Delete])
     const ManageProductsDelete = id => {
-        fetch(`http://localhost:5000/service/delete/${id}`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/service/delete/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

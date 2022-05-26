@@ -15,7 +15,7 @@ const AddReview = () => {
         const image =user?.photoURL;
         const Review={text,image}
         if (text) {
-            fetch('http://localhost:5000/review', {
+            fetch('https://vast-ridge-73699.herokuapp.com/review', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

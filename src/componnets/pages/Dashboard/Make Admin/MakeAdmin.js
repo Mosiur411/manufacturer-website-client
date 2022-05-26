@@ -5,7 +5,7 @@ const MakeAdmin = () => {
     const [Admin, setAdmin] = useState([])
     const [AddAdmin, setAddAdmin] = useState(null)
     useEffect(() => {
-        fetch(`http://localhost:5000/email`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/email`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ const MakeAdmin = () => {
     }, [AddAdmin, Admin])
     const AddAmin = (id) => {
         const email = id;
-        fetch(`http://localhost:5000/email/admin/${email}`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/email/admin/${email}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ const MakeAdmin = () => {
                     </thead>
                     <tbody>
                         {
-                            Admin.map((ad, index) => <tr key={ad._id}>
+                            Admin?.map((ad, index) => <tr key={ad._id}>
                                 <th>{index + 1}</th>
                                 <td className='font-bold'>{ad.email}</td>
                                 <td onClick={() => AddAmin(ad.email)}>{

@@ -8,7 +8,7 @@ const Dashboard = () => {
     const [user] = useAuthState(auth);
     const [UserAdmin, setUserAdmin] = useState(null)
     useEffect(() => {
-        fetch(`http://localhost:5000/email/admin/${user.email}`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/email/admin/${user.email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

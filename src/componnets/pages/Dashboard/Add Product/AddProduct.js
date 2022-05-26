@@ -23,7 +23,7 @@ const AddProduct = () => {
                     const addProduct = {
                         images, name, AvailableStok, Quantity, prices,Message
                     }
-                    fetch('http://localhost:5000/services', {
+                    fetch('https://vast-ridge-73699.herokuapp.com/services', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

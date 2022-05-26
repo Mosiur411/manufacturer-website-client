@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 const ManageOrder = () => {
     const [Manages, setManages] = useState([])
     useEffect(() => {
-        fetch(`http://localhost:5000/service/Order/ALL`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/service/Order/ALL`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ const ManageOrder = () => {
             })
     })
     const ManagesOrderDelete = (id) => {
-        fetch(`http://localhost:5000/service/Order/ALLdelete/${id}`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/service/Order/ALLdelete/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ const ManageOrder = () => {
             })
     }
     const Pending = (id) => {
-        fetch(`http://localhost:5000/service/Order/pending/${id}`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/service/Order/pending/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -59,13 +59,13 @@ const ManageOrder = () => {
                         </thead>
                         <tbody className='font-medium'>
                             {
-                                Manages.map((Manage, index) => <tr key={Manage._id}>
+                                Manages?.map((Manage, index) => <tr key={Manage._id}>
                                     <td>{index + 1}</td>
                                     <td><img className='w-20 rounded-full '  src={Manage.OrderImages} alt="Product images" /></td>
                                     <td className='text-secondary font-bold'>{Manage.OrderName}</td>
                                     <td>{Manage.Pic}</td>
                                     <td>$ {Manage.OrderPrice}</td>
-                                    <td>{Manage.paid ? <button className="btn btn-primary" onClick={() => Pending(Manage._id)}>{Manage?.shift ? <button className="btn btn-primary">Shift</button> : <button className="btn btn-primary">Pending</button>}</button> : <span className='text-red-400'>Not Payment</span>}</td>
+                                    <td>{Manage.paid ? <button className="btn btn-primary" onClick={() => Pending(Manage._id)}>{Manage?.shift ? <span >Shift</span> : <span >Pending</span>}</button> : <span className='text-red-400'>Not Payment</span>}</td>
                                     <td onClick={() => ManagesOrderDelete(Manage._id)}><span>
                                         <button className="btn btn-circle btn-outline">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>

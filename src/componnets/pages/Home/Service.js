@@ -1,23 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, {  } from 'react';
+import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../../shared/Spinner'
 
 const Service = () => {
-    const [services, setServices] = useState([])
-    const Navigate=useNavigate()
-    useEffect(() => {
-        fetch('http://localhost:5000/service', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization':`Bearer ${localStorage.getItem("AssesToken")}`
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                setServices(data)
-                console.log(data)
-            })
-    },[])
+    // const [services, setServices] = useState([])
+    const Navigate = useNavigate()
+
+
+    const { data: services, isLoading, } = useQuery('server', () => fetch('https://api.github.com/repos/tannerlinsley/react-query', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${localStorage.getItem("AssesToken")}`
+        }
+    }).then(res => res.json()))
+
+    if (isLoading) {
+        return <Spinner></Spinner>
+    }
+    // const {data:services } = useQuery('service', () =>
+    //     fetch('https://api.github.com/repos/tannerlinsley/react-query', {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'authorization': `Bearer ${localStorage.getItem("AssesToken")}`
+    //         },
+    //     }).then(res =>res.json())
+    // )
+
+
+
+    // useEffect(() => {
+    //     fetch('https://vast-ridge-73699.herokuapp.com/service', {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             'authorization':`Bearer ${localStorage.getItem("AssesToken")}`
+    //         },
+    //     })
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             setServices(data)
+    //             console.log(data)
+    //         })
+    // },[])
     return (
         <div>
             <h1 className=' my-20 text-4xl text-center text-secondary font-bold'>## My Services ##</h1>
@@ -35,7 +62,7 @@ const Service = () => {
                             <p className='font-medium text-slate-600'>Order Quantity : <span>{service.Quantity}</span></p>
                             <p className='font-medium text-slate-600'>Price:$ {service.prices}</p>
                             <p className='font-medium text-slate-400'>Description:{service.Message}</p>
-                            <button onClick={()=>Navigate(`purchasePages/${service._id}`)} className='btn  btn-outline btn-primary'>Buy Now</button>
+                            <button onClick={() => Navigate(`purchasePages/${service._id}`)} className='btn  btn-outline btn-primary'>Buy Now</button>
 
                         </div>
                     </div>)

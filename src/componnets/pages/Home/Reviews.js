@@ -4,7 +4,7 @@ import man from '../../../assets/electrician-manual-worker-removebg-preview.png'
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/review', {
+        fetch('https://vast-ridge-73699.herokuapp.com/review', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

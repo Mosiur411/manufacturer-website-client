@@ -11,7 +11,7 @@ const Payment = () => {
     const [Payment, setPayment] = useState({})
     const { OrderName, OrderImages, email, OrderPrice, Pic: size, Number } = Payment
     useEffect(() => {
-        fetch(`http://localhost:5000/service/order/payment/${id}`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/service/order/payment/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

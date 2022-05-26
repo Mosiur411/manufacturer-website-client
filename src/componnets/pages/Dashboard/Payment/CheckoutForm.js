@@ -12,7 +12,7 @@ const CheckoutForm = ({ MyPayment }) => {
     const Navigate=useNavigate()
     useEffect((MyPayment) => {
         const price = 100;
-        fetch(`http://localhost:5000/create-payment-intent`, {
+        fetch(`https://vast-ridge-73699.herokuapp.com/create-payment-intent`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ const CheckoutForm = ({ MyPayment }) => {
                 Amount: paymentIntent?.amount,
             }
             if (paymentIntent) {
-                fetch(`http://localhost:5000/service/success/payment/${MyPayment?._id}`, {
+                fetch(`https://vast-ridge-73699.herokuapp.com/service/success/payment/${MyPayment?._id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'
