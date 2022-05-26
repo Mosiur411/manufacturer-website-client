@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import CheckoutForm from './CheckoutForm';
+
+const stripePromise = loadStripe('pk_test_51L1wwjDAYSz72lr1nWsB0uKFEeZD8Fsn8DJsi1GnCoBa3Tcwcyx8pKA9bFiocuR31NlbpOgeOs8nriYtWVKH8M8l00OFtQIs4F');
 
 const Payment = () => {
     const { id } = useParams()
@@ -40,32 +45,13 @@ const Payment = () => {
             <div class="modal">
                 <div class="modal-box relative">
                     <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <div>
-                        <div class="card w-96 mx-auto bg-base-100 shadow">
-                            <div class="card-body">
-                                <h2 class="card-title">{OrderName}</h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                            </div>
-                        </div>
-
+                    <div className='p-10'>
+                        <Elements stripe={stripePromise}>
+                            <CheckoutForm MyPayment={Payment}/>
+                        </Elements>
                     </div>
-                    <div className='text-center py-3'>
-                        <button className='btn'>Submit</button>
-                    </div>
-
                 </div>
             </div>
-            {/* <div className='mt-16'>
-                <div class="card w-96 mx-auto bg-base-100 shadow-xl">
-                    <div class="card-body">
-                        <h2 class="card-title">Card title!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                    </div>
-                </div>
-                <div className='text-center py-3'>
-                    <button className='btn'>Submit</button>
-                </div>
-            </div> */}
         </div >
     );
 };
