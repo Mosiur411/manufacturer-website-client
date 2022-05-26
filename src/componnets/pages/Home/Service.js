@@ -5,7 +5,7 @@ import Spinner from '../../shared/Spinner'
 
 const Service = () => { 
     const Navigate = useNavigate()
-    const { data:services, isLoading, } = useQuery('server', () => fetch('https://api.github.com/repos/tannerlinsley/react-query', {
+    const { data:services, isLoading, } = useQuery('service', () => fetch('https://vast-ridge-73699.herokuapp.com/service', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -15,6 +15,9 @@ const Service = () => {
     if (isLoading) {
         return <Spinner></Spinner>
     }
+    //https://vast-ridge-73699.herokuapp.com
+    // http://localhost:5000/service
+    // https://api.github.com/repos/tannerlinsley/react-query
     return (
         <div>
             <h1 className=' my-20 text-4xl text-center text-secondary font-bold'>## My Services ##</h1>
