@@ -1,5 +1,4 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import ReactHelmet from '../../hook/ReactHelmet';
 import Contact from './Contact';
 import HomeCard from './HomeCard';

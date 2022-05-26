@@ -8,7 +8,8 @@ const MakeAdmin = () => {
         fetch(`http://localhost:5000/email`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization':`Bearer ${localStorage.getItem("AssesToken")}`
             },
         })
             .then(res => res.json())
@@ -35,8 +36,8 @@ const MakeAdmin = () => {
     }
     return (
         <div>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th>COUNT </th>
@@ -50,7 +51,7 @@ const MakeAdmin = () => {
                                 <th>{index + 1}</th>
                                 <td className='font-bold'>{ad.email}</td>
                                 <td onClick={() => AddAmin(ad.email)}>{
-                                    ad?.Admin === 'role' ? <span className='text-fuchsia-600 font-bold'>Admin</span> : <button class="btn btn-outline btn-secondary">Make Admin</button>
+                                    ad?.Admin === 'role' ? <span className='text-fuchsia-600 font-bold'>Admin</span> : <button className="btn btn-outline btn-secondary">Make Admin</button>
                                 }
                                 </td>
                             </tr>)

@@ -14,9 +14,9 @@ const PurchasePages = () => {
         fetch(`http://localhost:5000/service/${id}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization':`Bearer ${localStorage.getItem("AssesToken")}`
             },
-            // body: JSON.stringify(Profile),
         })
             .then(res => res.json())
             .then(data => {
@@ -76,53 +76,53 @@ const PurchasePages = () => {
 
     }
     return (
-        <div className='px-5  md:px-20'>
-            <h1 className='text-center text-4xl font-medium text-green-500 py-3'>Product Names : {name}</h1>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-10'>
-                <div className='p-5 w-[80%] mx-auto shadow-lg'>
+        <div className='px-5  md:px-20 my-10'>
+            <h1 className='text-center text-4xl font-bold text-secondary py-3 mb-10'>Product Names : {name}</h1>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-10 '>
+                <div className='p-5 w-[80%] mx-auto shadow-xl rounded-2xl'>
                     <div><img className='w-[100%] mx-auto' src={images} alt="Product Images" /></div>
-                    <div className='flex justify-between'>
-                        <h1>Name: {name}</h1>
-                        <h1>Prices:$ {prices}</h1>
+                    <div className='flex justify-between py-2'>
+                        <h1 className='font-medium text-xl text-secondary'>Name: {name}</h1>
+                        <h1  className='font-medium text-xl text-secondary'>Prices:$ {prices}</h1>
                     </div>
                     <div className='flex justify-between'>
-                        <h1>AvailableStok: {AvailableStok}</h1>
-                        <h1>Quantity: {Quantity}</h1>
+                        <h1  className='font-medium text-md text-secondary'>AvailableStok: {AvailableStok}</h1>
+                        <h1  className='font-medium text-md text-secondary'>Quantity: {Quantity}</h1>
                     </div>
-                    <h1>{Message}</h1>
+                    <h1  className='text-gray-500'>{Message}</h1>
                 </div>
-                <div className='p-3 w-[80%] mx-auto shadow-lg'>
-                    <div>
+                <div className='p-3 w-[80%] mx-auto shadow-xl rounded-2xl'>
+                    <div className='font-medium'>
                         <form onSubmit={Order}>
                             <div className="md:flex items-center mt-12">
                                 <div className="md:w-[100%] flex flex-col">
-                                    <label className="text-base font-semibold leading-none text-gray-800">Product Names</label>
+                                    <label className="text-base  leading-none text-gray-800">Product Names</label>
                                     <input
                                         type="name"
                                         value={name}
                                         disabled
-                                        className="text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 placeholder-gray-100" required />
-                                    <label className="text-base font-semibold leading-none text-gray-800">Email</label>
+                                        className="text-base leading-none text-gray-900 p-3  focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 placeholder-gray-100" required />
+                                    <label className="text-base  leading-none text-gray-800">Email</label>
                                     <input
                                         value={user.email}
                                         type="name"
                                         disabled
-                                        className="text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 placeholder-gray-100" required />
-                                    <label className="text-base font-semibold leading-none text-gray-800">Contact Number</label>
+                                        className="text-base leading-none text-gray-900 p-3  focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 placeholder-gray-100" required />
+                                    <label className="text-base  leading-none text-gray-800">Contact Number</label>
                                     <input name='number'
                                         type="number"
                                         placeholder='Contact Number'
-                                        className="text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 " required />
-                                    <label className="text-base font-semibold leading-none text-gray-800">Quantity</label>
+                                        className="text-base leading-none text-gray-900 p-3  focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 " required />
+                                    <label className="text-base  leading-none text-gray-800">Quantity</label>
                                     <input name='Order'
                                         type="number"
                                         placeholder={`Minimum Order ${Quantity}`}
-                                        className="text-base leading-none text-gray-900 p-3 focus:oultine-none focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 " required />
+                                        className="text-base leading-none text-gray-900 p-3  focus:border-indigo-700 mt-4 bg-gray-100 border rounded border-gray-200 " required />
 
                                 </div>
                             </div>
                             <div className="flex items-center justify-center w-full">
-                                <input type='submit' value='SUBMIT' className="mt-9 text-base font-semibold leading-none text-white py-4 px-10 bg-indigo-700 rounded hover:bg-indigo-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none" />
+                                <input type='submit' value='SUBMIT' className="mt-9 text-base  leading-none text-white py-4 px-10 bg-indigo-700 rounded hover:bg-indigo-600 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 focus:outline-none" />
                             </div>
                         </form>
                     </div>

@@ -22,7 +22,7 @@ const Navbar = () => {
         <li key='1'><NavLink to='/'>Home</NavLink></li>,
         <li key='2'><NavLink to='/blog'>Blog</NavLink></li>,
         <li key='3'>{user && <NavLink to='/dashboard'>Dashboard</NavLink>}</li>,
-        <label key='4' for="my-drawer-2" className='my-5 btn bg-primary-content lg:hidden'>Open Dashboard</label>
+        <label key='4' htmlFor="my-drawer-2" className='my-5 btn bg-primary-content lg:hidden'>Open Dashboard</label>
     ]
     const Profile = [
         <li key='1'><NavLink to='dashboard/myProfile'>My Profile</NavLink></li>,
@@ -57,7 +57,7 @@ const Navbar = () => {
                         <ul tabIndex="0" className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             {Profile}
                         </ul>
-                    </div> : <button className='btn'>
+                    </div> : <button className='btn btn-outline btn-primary'>
                         <Link to='/login'>Login</Link>
                     </button>
                 }

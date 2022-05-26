@@ -14,7 +14,8 @@ const Payment = () => {
         fetch(`http://localhost:5000/service/order/payment/${id}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization':`Bearer ${localStorage.getItem("AssesToken")}`
             },
         })
             .then(res => res.json())
@@ -27,24 +28,24 @@ const Payment = () => {
     }, [id])
     return (
         <div className='px-5  md:px-20'>
-            <h1 className='text-center text-4xl font-medium text-green-500 py-3'>Product Names : {OrderName}</h1>
-            <div class="card card-side bg-base-100 shadow p-10">
+            <h1 className='text-center text-4xl font-bold  py-3'>Product Names : {OrderName}</h1>
+            <div className="card card-side bg-base-100 shadow-2xl p-10">
                 <figure><img className='w-96' src={OrderImages} alt="Movie" /></figure>
-                <div class="card-body">
-                    <h2 class="card-title">Email: {email}</h2>
+                <div className="card-body">
+                    <h2 className="card-title">Email: {email}</h2>
                     <p>Name: {OrderName}</p>
                     <p>Prices:$ {OrderPrice}</p>
                     <p>Size: {size}</p>
                     <p>Number: {Number}</p>
-                    <div class="card-actions justify-end">
-                        <label for="my-modal-3" class="btn modal-button">Pay</label>
+                    <div className="card-actions justify-end">
+                        <label htmlFor="my-modal-3" className="btn btn-primary">Pay</label>
                     </div>
                 </div>
             </div>
-            <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-            <div class="modal">
-                <div class="modal-box relative">
-                    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box relative">
+                    <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <div className='p-10'>
                         <Elements stripe={stripePromise}>
                             <CheckoutForm MyPayment={Payment}/>

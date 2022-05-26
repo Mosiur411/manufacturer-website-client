@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import Spinner from '../../../shared/Spinner';
 import auth from '../../../../firebase.init';
 
 const MyProfile = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const [Edit, setEdit] = useState(false)
     const [UpdateValue, setUpdateValue] = useState(false)
     const [Update, setUpdate] = useState({})
+   
     const ProfileEdit = event => {
         event.preventDefault()
         const Education = event.target.Education.value;
@@ -15,7 +17,6 @@ const MyProfile = () => {
         const number = event.target.number.value;
         const Date = event.target.Date.value;
         const Profile = { Education: Education, Address: Address, Number: number, Date: Date }
-        // /email/MyProfile/:email
         if (Profile) {
             fetch(`http://localhost:5000/email/user/${user.email}`, {
                 method: 'PUT',
@@ -33,13 +34,13 @@ const MyProfile = () => {
                     }
                 })
         }
-
     }
     useEffect(() => {
         fetch(`http://localhost:5000/email/MyProfile/${user.email}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'authorization':`Bearer ${localStorage.getItem("AssesToken")}`
             },
         })
             .then(res => res.json())
@@ -48,10 +49,13 @@ const MyProfile = () => {
                 
             })
     },[user.email,UpdateValue])
+    if(loading){
+        return <Spinner></Spinner>
+    }
     return (
         <div>
             <div className='text-center border-2 md:w-[50%] p-2 md:p-5 mx-auto rounded-3xl shadow-xl'>
-                <h1 className='w-24  mx-auto'><img class="mask mask-hexagon-2" src={user?.photoURL} alt="Profile" /></h1>
+                <h1 className='w-24  mx-auto'><img className="mask mask-hexagon-2" src={user?.photoURL} alt="Profile" /></h1>
                 <h1 className='font-bold text-3xl py-3 '>{user?.displayName}</h1>
                 <h1 className='font-normal text-xl py-3 '>{user?.email}</h1>
                 {
@@ -62,7 +66,7 @@ const MyProfile = () => {
                         <h1 className='font-medium text-xl py-2 '>Date: {Update?.Date}</h1>
                     </div>
                 }
-                <button onClick={() => setEdit(!Edit)} class="btn btn-outline btn-secondary">Edit Profile</button>
+                <button onClick={() => setEdit(!Edit)} className="btn btn-outline btn-secondary">Edit Profile</button>
             </div>
             {
                 Edit && <div className='w-full mx-auto mb-10'>

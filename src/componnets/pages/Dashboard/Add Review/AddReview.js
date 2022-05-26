@@ -1,10 +1,14 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
+import Spinner from '../../../shared/Spinner';
 import auth from '../../../../firebase.init';
 
 const AddReview = () => {
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
+    if(loading){
+        return <Spinner></Spinner>
+    }
     const Review = event => {
         event.preventDefault()
         const text = event.target.TextReview.value;
@@ -15,6 +19,7 @@ const AddReview = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'authorization':`Bearer ${localStorage.getItem("AssesToken")}`
                 },
                 body: JSON.stringify(Review),
             })
@@ -31,11 +36,11 @@ const AddReview = () => {
 }
 return (
     <div className='px-10'>
-        <h1 className='text-center text-3xl font-bold text-primary'>AddReview</h1>
+        <h1 className='text-center text-3xl font-bold '>Add Review</h1>
         <div className='flex justify-center items-center h-[50vh]'>
             <div className='text-center'>
-                <div class="avatar online">
-                    <div class="w-24 rounded-full">
+                <div className="avatar online">
+                    <div className="w-24 rounded-full">
                         <p><img src={user?.photoURL} alt='Images' /></p>
                     </div>
                 </div>
@@ -44,7 +49,7 @@ return (
                         <textarea className='border-2 outline-none rounded-lg shadow p-1 ' name="TextReview" id="" cols="47" rows="5" required></textarea>
                     </div>
                     <div className='text-left'>
-                        <input type='submit' value='Add Review' class="btn btn-accent " />
+                        <input type='submit' value='Add Review' className="btn btn-primary" />
                     </div>
                 </form>
             </div>

@@ -72,7 +72,7 @@ const Register = () => {
                         </div>
                         <div className="card w-[326px] md:w-96 bg-base-100 mx-auto shadow-2xl">
                             <div className="card-body">
-                                <h1 className='text-center'>Signup</h1>
+                                <h1 className='text-center text-2xl font-medium'>Signup...</h1>
                                 <div>
                                     <form onSubmit={handleSubmit(onSubmit)}>
                                         <div className="form-control w-full max-w-xs">
@@ -159,7 +159,7 @@ const Register = () => {
                                         <input className='form-control w-full max-w-xs btn' type="submit" value='Register' />
 
                                     </form>
-                                    <button onClick={() => signInWithGoogle()} className="btn mt-5 w-full btn-outline btn-secondary">
+                                    <button onClick={() => signInWithGoogle()} className="btn mt-5 w-full btn-outline btn-primary">
                                         <img className='w-[32px]' src={google} alt="" />
                                         <h1 className='pl-2'>CONTINUE WITH GOOGLE</h1>
                                     </button>

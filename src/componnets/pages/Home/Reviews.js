@@ -19,11 +19,11 @@ const Reviews = () => {
     return (
         <div>
             <div className='max-w-7xl mx-auto my-16 px-8 mb-16'>
-                <h1 className='mb-12 text-4xl text-center text-primary font-bold' >Customar Say</h1>
+                <h1 className='mb-12 text-4xl text-center text-secondary font-bold' >Customer Commit</h1>
                 <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
                     {
                         reviews.map(review =>
-                            <div className="card  bg-base-100 shadow-2xl">
+                            <div key={review?._id} className="card  bg-base-100 shadow-2xl">
                                 <div className="card-body">
                                     <div className="card-actions justify-center">
                                         <div className="avatar">
@@ -32,14 +32,14 @@ const Reviews = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <p> <span className='text-2xl font-mono text-primary'>"</span>{review?.text}<span className='text-2xl font-mono text-primary'>"</span></p>
+                                    <p> <span className='text-2xl font-mono text-secondary'>"</span>{review?.text}<span className='text-2xl font-mono text-secondary'>"</span></p>
                                     <div className='text-center mt-4'>
-                                        <div class="rating">
-                                            <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-                                            <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" checked />
-                                            <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-                                            <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
-                                            <input type="radio" name="rating-4" class="mask mask-star-2 bg-green-500" />
+                                        <div className="rating">
+                                            <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
+                                            <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" checked />
+                                            <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
+                                            <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
+                                            <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
                                         </div>
                                     </div>
                                 </div>
@@ -56,11 +56,11 @@ const Reviews = () => {
                             <div>
                                 <img className='hidden lg:block w-100 h-100' src={man} alt='' />
                             </div>
-                            <div className='text-white'>
-                                <h1 className='m-5 text-3xl font-bold font-serif'>YOU’LL BE HAPPY TO SEE OUR AWESOME</h1>
-                                <h1 className='m-5 text-3xl font-bold  font-serif'>FEATURES.</h1>
-                                <p className='m-5 font-bold'>Sale 20% off your Collection days</p>
-                                <button className=" m-5 btn btn-secondary">Button</button>
+                            <div className='text-white '>
+                                <h1 className='m-5 text-3xl font-bold font-serif '>YOU’LL BE HAPPY TO SEE OUR AWESOME</h1>
+                                <h1 className='m-5 text-3xl font-bold  font-serif '>FEATURES.</h1>
+                                <p className='m-5 font-bold '>Sale 20% off your Collection days</p>
+                                <button className=" m-5 btn btn-primary">Button</button>
                             </div>
                         </div>
                     </div>

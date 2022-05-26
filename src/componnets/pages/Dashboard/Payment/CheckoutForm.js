@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ MyPayment }) => {
     const [Error, setError] = useState('')
@@ -8,11 +9,9 @@ const CheckoutForm = ({ MyPayment }) => {
     const [Payment, setPayment] = useState({})
     const stripe = useStripe();
     const elements = useElements();
-    useEffect(() => {
-        const price = MyPayment?.OrderPrice;
-        if (!price) {
-            return
-        }
+    const Navigate=useNavigate()
+    useEffect((MyPayment) => {
+        const price = 100;
         fetch(`http://localhost:5000/create-payment-intent`, {
             method: 'POST',
             headers: {
@@ -27,6 +26,7 @@ const CheckoutForm = ({ MyPayment }) => {
 
                 }
             })
+
     }, [MyPayment?.OrderPrice])
     const handleSubmit = async (event) => {
         // Block native form submission.
@@ -68,10 +68,10 @@ const CheckoutForm = ({ MyPayment }) => {
         } else {
             setSuccess("Your payment success fully")
             setError('')
-            const Payment={
-                id:paymentIntent?.id,
-                Currency:paymentIntent?.currency,
-                Amount:paymentIntent?.amount,
+            const Payment = {
+                id: paymentIntent?.id,
+                Currency: paymentIntent?.currency,
+                Amount: paymentIntent?.amount,
             }
             if (paymentIntent) {
                 fetch(`http://localhost:5000/service/success/payment/${MyPayment?._id}`, {
@@ -83,7 +83,9 @@ const CheckoutForm = ({ MyPayment }) => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                       console.log(data)
+                       if(data){
+                        Navigate('/')
+                       }
                     })
             }
 
@@ -117,8 +119,8 @@ const CheckoutForm = ({ MyPayment }) => {
             {
                 Payment && <p>{Payment.id}</p>
             }
-            <button className='btn' type="submit" disabled={!stripe || !clientSecret}>
-                Pay
+            <button className='btn btn-primary mt-5' type="submit" disabled={!stripe || !clientSecret}>
+                Payment
             </button>
         </form>
     );
