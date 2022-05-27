@@ -6,7 +6,7 @@
 
 ## Available Live Site Link :
 
-### [https://api.github.com/repos/tannerlinsley/react-query](https://api.github.com/repos/tannerlinsley/react-query)
+### [https://manufacturer-411a6.web.app/](https://manufacturer-411a6.web.app/)
 
 ## DocTreat Website Features :
 
