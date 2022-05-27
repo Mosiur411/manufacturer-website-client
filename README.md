@@ -1,4 +1,3 @@
-Joy Paul
 # Vitic
 
 ## Website Name :

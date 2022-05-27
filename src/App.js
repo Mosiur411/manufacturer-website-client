@@ -23,6 +23,7 @@ import ManageProducts from './componnets/pages/Dashboard/Manage Products/ManageP
 import MakeAdmin from './componnets/pages/Dashboard/Make Admin/MakeAdmin';
 import PurchasePages from './componnets/pages/Home/PurchasePages';
 import Payment from './componnets/pages/Dashboard/Payment/Payment';
+import Profile from './componnets/pages/Profile/Profile';
 function App() {
   useEffect(() => {
     AOS.init();
@@ -33,6 +34,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="blog" element={<Blog />} />
+        <Route path="profile" element={<Profile/>}/>
         <Route path="purchasePages/:id" element={<RequireAuth>
           <PurchasePages />
         </RequireAuth>} />

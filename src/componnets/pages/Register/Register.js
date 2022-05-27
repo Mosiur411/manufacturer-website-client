@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import auth from '../../../firebase.init';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import Spinner from '../../shared/Spinner';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import UserToken from '../../shared/UserToken';
 
@@ -156,6 +156,9 @@ const Register = () => {
                                                 {errors.images?.type === 'required' && <span className=' text-red-600'>{errors.images.message}</span>}
                                             </label>
                                         </div>
+                                        <div className="label-text-alt text-lime-400 text-xl font-medium">
+                                                <Link to='/login'>Login....</Link>
+                                            </div>
                                         <input className='form-control w-full max-w-xs btn' type="submit" value='Register' />
 
                                     </form>

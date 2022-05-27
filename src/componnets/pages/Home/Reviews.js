@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import banner from '../../../assets/banner-9.png.webp';
 import man from '../../../assets/electrician-manual-worker-removebg-preview.png';
+import auth from '../../../firebase.init';
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
+    const [user] = useAuthState(auth);
     useEffect(() => {
         fetch('https://vast-ridge-73699.herokuapp.com/review', {
             method: 'GET',
@@ -40,6 +43,8 @@ const Reviews = () => {
                                             <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
                                             <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
                                             <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
+                                            <span> {review.Rating}</span>
+                                            <span className='px-3'> {user.displayName}</span>
                                         </div>
                                     </div>
                                 </div>

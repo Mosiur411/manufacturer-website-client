@@ -3,7 +3,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../../../firebase.init';
-
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 const MyOrders = () => {
     const [user] = useAuthState(auth);
     const Navigate = useNavigate()
@@ -24,18 +25,37 @@ const MyOrders = () => {
             })
     }, [user])
     const MyOrderDelete = (id) => {
-        fetch(`https://vast-ridge-73699.herokuapp.com/service/payment/delete/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                if(data){
-                    toast.success("SuccessFully Delete")
+
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure Delete.',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        fetch(`https://vast-ridge-73699.herokuapp.com/service/payment/delete/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data) {
+                                    toast.success("SuccessFully Delete")
+                                }
+                            })
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => {
+                        toast("Note Delete")
+                    }
                 }
-            })
+            ]
+        });
+
     }
     return (
         <div>

@@ -38,7 +38,7 @@ const Dashboard = () => {
                     {
                         UserAdmin ? ' ':<ul>
                             <li><NavLink to=''>My Orders</NavLink></li>
-                            <li> <NavLink to='addReview'>Add Review</NavLink></li>
+                            <li className='my-10'> <NavLink to='addReview'>Add Review</NavLink></li>
                             <li> <NavLink to='myProfile'>My Profile</NavLink></li>
                         </ul>
                     }

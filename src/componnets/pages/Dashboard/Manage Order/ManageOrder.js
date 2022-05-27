@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import { toast } from 'react-toastify';
 const ManageOrder = () => {
     const [Manages, setManages] = useState([])
     useEffect(() => {
@@ -16,16 +18,34 @@ const ManageOrder = () => {
             })
     })
     const ManagesOrderDelete = (id) => {
-        fetch(`https://vast-ridge-73699.herokuapp.com/service/Order/ALLdelete/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-            })
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure Delete.',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        fetch(`https://vast-ridge-73699.herokuapp.com/service/Order/ALLdelete/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                toast.success("SuccessFully Delete")
+                            })
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => {
+                        toast("Note Delete")
+                    }
+                }
+            ]
+        });
+
     }
     const Pending = (id) => {
         fetch(`https://vast-ridge-73699.herokuapp.com/service/Order/pending/${id}`, {
@@ -61,7 +81,7 @@ const ManageOrder = () => {
                             {
                                 Manages?.map((Manage, index) => <tr key={Manage._id}>
                                     <td>{index + 1}</td>
-                                    <td><img className='w-20 rounded-full '  src={Manage.OrderImages} alt="Product images" /></td>
+                                    <td><img className='w-20 rounded-full ' src={Manage.OrderImages} alt="Product images" /></td>
                                     <td className='text-secondary font-bold'>{Manage.OrderName}</td>
                                     <td>{Manage.Pic}</td>
                                     <td>$ {Manage.OrderPrice}</td>
