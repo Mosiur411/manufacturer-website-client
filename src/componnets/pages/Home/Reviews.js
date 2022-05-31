@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import banner from '../../../assets/banner-9.png.webp';
 import man from '../../../assets/electrician-manual-worker-removebg-preview.png';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import "swiper/css";
+import "swiper/css/pagination";
+import "./styles.css";
+import ReactStars from "react-rating-stars-component";
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
@@ -8,7 +14,7 @@ const Reviews = () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'authorization':`Bearer ${localStorage.getItem("AssesToken")}`
+                'authorization': `Bearer ${localStorage.getItem("AssesToken")}`
             },
         })
             .then(response => response.json())
@@ -18,12 +24,22 @@ const Reviews = () => {
     }, [])
     return (
         <div>
+            {/* ===================== ret =====================  */}
+
             <div className='max-w-7xl mx-auto my-16 px-8 mb-16'>
                 <h1 className='mb-12 text-4xl text-center text-secondary font-bold' >Customer Commit</h1>
-                <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+            </div>
+            <div className='max-w-7xl mx-auto my-16 px-8 mb-16'>
+                <Swiper
+                    modules={[Navigation, Pagination, Scrollbar, A11y]}
+                    pagination={true}
+                    spaceBetween={50}
+                    slidesPerView={3}
+                    navigation
+                >
                     {
-                        reviews.map(review =>
-                            <div key={review?._id} className="card  bg-base-100 shadow-2xl">
+                        reviews.map(review => <SwiperSlide key={review._id} className='m-3'>
+                            <div className='h-[320px] w-full p-4 shadow-xl rounded-2xl'>
                                 <div className="card-body">
                                     <div className="card-actions justify-center">
                                         <div className="avatar">
@@ -32,23 +48,27 @@ const Reviews = () => {
                                             </div>
                                         </div>
                                     </div>
+
                                     <p> <span className='text-2xl font-mono text-secondary'>"</span>{review?.text}<span className='text-2xl font-mono text-secondary'>"</span></p>
                                     <div className='text-center mt-4'>
                                         <div className="rating">
-                                            <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
-                                            <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" checked />
-                                            <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
-                                            <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
-                                            <input type="radio" name="rating-4" className="mask mask-star-2 bg-green-500" />
-                                            <span className='px-4'> {review.Rating}</span>
+                                            <ReactStars
+                                                count={5}
+                                                size={24}
+                                                value={review.Rating}
+                                                activeColor="#ffd700"
+                                            />,
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        )
+                        </SwiperSlide>)
                     }
-                </div>
+
+                </Swiper>
             </div>
+
+
             {/* ============= =============== */}
             <div className='mt-20'>
                 <div style={{ background: `url(${banner})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>

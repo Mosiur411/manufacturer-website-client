@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import Spinner from '../../../shared/Spinner';
 import auth from '../../../../firebase.init';
+import ReactStars from 'react-rating-stars-component';
 
 const AddReview = () => {
     const [user, loading] = useAuthState(auth);
+    const [Rating, setRating] = useState(0);
     if (loading) {
         return <Spinner></Spinner>
     }
+    const ratingChanged = (newRating) => {
+        setRating(newRating);
+      };
     const Review = event => {
         event.preventDefault()
         const text = event.target.TextReview.value;
-        const Rating = event.target.Rating.value;
         const image = user?.photoURL;
         const Review = { text, image, Rating }
-        if ( Number(Rating)<6) {
+        if (Rating) {
             if (text) {
                 fetch('https://vast-ridge-73699.herokuapp.com/review', {
                     method: 'POST',
@@ -34,7 +38,7 @@ const AddReview = () => {
                     })
             }
         }
-        else{
+        else {
             toast.error('Rating 1-5')
         }
 
@@ -55,7 +59,12 @@ const AddReview = () => {
                             <textarea className='border-2 outline-none rounded-lg shadow p-1 ' name="TextReview" id="" cols="47" rows="5" required></textarea>
                             <div className='text-left my-3'>
                                 <label htmlFor="Rating" className='py-2 text-xl text-secondary'>Rating</label><br />
-                                <input type="number" className='border-2 outline-none rounded-lg shadow p-1' name="Rating" id="Rating" required placeholder='Rating' />
+                                <ReactStars
+                                    count={5}
+                                    onChange={ratingChanged}
+                                    size={24}
+                                    activeColor="#ffd700"
+                                />
                             </div>
                         </div>
                         <div className='text-left'>
