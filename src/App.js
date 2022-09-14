@@ -1,6 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Blog from './componnets/pages/Blog/Blog';
 import Home from './componnets/pages/Home/Home';
 import Footer from './componnets/shared/Footer';
 import Navbar from './componnets/shared/Navbar';
@@ -24,6 +23,7 @@ import MakeAdmin from './componnets/pages/Dashboard/Make Admin/MakeAdmin';
 import PurchasePages from './componnets/pages/Home/PurchasePages';
 import Payment from './componnets/pages/Dashboard/Payment/Payment';
 import Profile from './componnets/pages/Profile/Profile';
+import Service from './componnets/pages/Home/Service';
 function App() {
   useEffect(() => {
     AOS.init();
@@ -33,7 +33,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="blog" element={<Blog />} />
+        <Route path="/servicedata" element={<Service />} />
         <Route path="profile" element={<Profile/>}/>
         <Route path="purchasePages/:id" element={<RequireAuth>
           <PurchasePages />
@@ -41,7 +41,7 @@ function App() {
         <Route path="dashboard" element={<RequireAuth>
           <Dashboard></Dashboard>
         </RequireAuth>}>
-          <Route path="" element={<MyOrders/>}/>
+          <Route path="myorders" element={<MyOrders/>}/>
           <Route path="addReview" element={<AddReview/>}/>
           <Route path="payment/:id" element={<Payment/>}/>
           <Route path="myProfile" element={<MyProfile/>}/>

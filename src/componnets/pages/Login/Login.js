@@ -34,15 +34,13 @@ const Login = () => {
     return (
         <div>
             <ReactHelmet>Login</ReactHelmet>
-            <div className='p-5'>
+            <div className='p-5  '>
                 <div className='md:flex gap-5 justify-around items-center w-full md:h-[80vh] '>
-                    <div>
-                        <img className=' md:w-[396px] lg:w-[596px] mx-auto' src={login} alt="Login images" />
-                    </div>
+                   
                     <div className="card w-[326px] md:w-96 bg-base-100 mx-auto shadow-2xl">
                         <div className="card-body">
                             <h1 className='text-center text-2xl font-medium'>Login..</h1>
-                            <div>
+                            <div className=''>
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                     <div className="form-control w-full max-w-xs">
                                         <label className="label">
@@ -107,7 +105,8 @@ const Login = () => {
 
                 </div>
             </div>
-        </div>
+        </div >
+
     );
 };
 

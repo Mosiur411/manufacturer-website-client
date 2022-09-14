@@ -66,9 +66,9 @@ const Register = () => {
             <ReactHelmet>Register</ReactHelmet>
             <div>
                 <div className='px-5 py-16'>
-                    <div className='md:flex gap-5 justify-around items-center w-full md:h-[80vh] '>
+                    <div className='md:flex gap-5 justify-around items-center w-full   '>
                         <div>
-                            <img className=' md:w-[396px] lg:w-[596px] mx-auto' src={Signup} alt="Signup images" />
+                            <img className=' md:w-[396px] lg:w-[596px] mx-auto rounded-md' src={Signup} alt="Signup images" />
                         </div>
                         <div className="card w-[326px] md:w-96 bg-base-100 mx-auto shadow-2xl">
                             <div className="card-body">

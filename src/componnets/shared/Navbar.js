@@ -21,8 +21,8 @@ const Navbar = () => {
     const NavbarMenu = [
         <li key='1'><NavLink to='/'>Home</NavLink></li>,
         <li key='2'><NavLink to='profile'>Profile</NavLink></li>,
-        <li key='3'><NavLink to='/blog'>Blog</NavLink></li>,
-        <li key='4'>{user && <NavLink to='/dashboard'>Dashboard</NavLink>}</li>,
+        <li key='2'><NavLink to='/servicedata'>Service</NavLink></li>,
+        <li key='4'><NavLink to='/dashboard'>Dashboard</NavLink></li>,
         <label key='5' htmlFor="my-drawer-2" className='btn mt-14 btn-primary-content lg:hidden'>Open Dashboard</label>
     ]
     const Profile = [

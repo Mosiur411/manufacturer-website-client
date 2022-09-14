@@ -39,7 +39,7 @@ const Reviews = () => {
                 >
                     {
                         reviews.map(review => <SwiperSlide key={review._id} className='m-3'>
-                            <div className='h-[320px] w-full p-4 shadow-xl rounded-2xl'>
+                            <div data-aos="zoom-in" className='h-[320px] w-full p-4 shadow-xl rounded-2xl'>
                                 <div className="card-body">
                                     <div className="card-actions justify-center">
                                         <div className="avatar">
@@ -74,10 +74,10 @@ const Reviews = () => {
                 <div style={{ background: `url(${banner})`, backgroundPosition: 'center', backgroundSize: 'cover' }}>
                     <div className="hero p-2 md:p-0">
                         <div className="hero-content flex-col lg:flex-row-reverse p-0">
-                            <div>
+                            <div data-aos="fade-right">
                                 <img className='hidden lg:block w-100 h-100' src={man} alt='' />
                             </div>
-                            <div className='text-white '>
+                            <div data-aos="fade-left" className='text-white '>
                                 <h1 className='m-5 text-3xl font-bold font-serif '>YOU’LL BE HAPPY TO SEE OUR AWESOME</h1>
                                 <h1 className='m-5 text-3xl font-bold  font-serif '>FEATURES.</h1>
                                 <p className='m-5 font-bold '>Sale 20% off your Collection days</p>
