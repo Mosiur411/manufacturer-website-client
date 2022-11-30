@@ -11,7 +11,7 @@ import Stat from './Stat';
 
 const Home = () => {
     return (
-        <div >
+        <div className='overflow-hidden'>
             <ReactHelmet>Home</ReactHelmet>
             <HomeCarousel></HomeCarousel>
             <div className='md:px-20'>
@@ -20,7 +20,7 @@ const Home = () => {
             </div>
             <Stat></Stat>
             <Reviews></Reviews>
-            <div className='bg-[#ECECED] p-5'>
+            <div className='bg-[#ECECED] px-0 py-5'>
                 <Contact></Contact>
             </div>
             <Bolg />
