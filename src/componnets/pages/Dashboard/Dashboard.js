@@ -11,7 +11,7 @@ const Dashboard = () => {
 
 
     useEffect(() => {
-        fetch(`https://vast-ridge-73699.herokuapp.com/email/admin/${user.email}`, {
+        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/email/admin/${user.email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

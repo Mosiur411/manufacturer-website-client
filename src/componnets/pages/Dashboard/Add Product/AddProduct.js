@@ -23,7 +23,7 @@ const AddProduct = () => {
                     const addProduct = {
                         images, name, AvailableStok, Quantity, prices,Message
                     }
-                    fetch('https://vast-ridge-73699.herokuapp.com/services', {
+                    fetch('https://manufacturer-website-server-production-43c1.up.railway.app/services', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

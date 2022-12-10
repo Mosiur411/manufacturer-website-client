@@ -6,7 +6,7 @@ const ManageProducts = () => {
     const [services, setServices] = useState([])
     const [Delete, setDelete] = useState(false)
     useEffect(() => {
-        fetch('https://vast-ridge-73699.herokuapp.com/service', {
+        fetch('https://manufacturer-website-server-production-43c1.up.railway.app/service', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ const ManageProducts = () => {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        fetch(`https://vast-ridge-73699.herokuapp.com/service/delete/${id}`, {
+                        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/service/delete/${id}`, {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json',

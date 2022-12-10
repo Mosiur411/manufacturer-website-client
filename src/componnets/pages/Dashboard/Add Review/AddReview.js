@@ -21,7 +21,7 @@ const AddReview = () => {
         const Review = { text, image, Rating }
         if (Rating) {
             if (text) {
-                fetch('https://vast-ridge-73699.herokuapp.com/review', {
+                fetch('https://manufacturer-website-server-production-43c1.up.railway.app/review', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

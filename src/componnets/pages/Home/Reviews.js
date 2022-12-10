@@ -10,7 +10,7 @@ import ReactStars from "react-rating-stars-component";
 const Reviews = () => {
     const [reviews, setReviews] = useState([])
     useEffect(() => {
-        fetch('https://vast-ridge-73699.herokuapp.com/review', {
+        fetch('https://manufacturer-website-server-production-43c1.up.railway.app/review', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

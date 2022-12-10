@@ -10,7 +10,7 @@ const MyOrders = () => {
     const Navigate = useNavigate()
     const [UserOrder, setUserOrder] = useState([])
     useEffect(() => {
-        fetch(`https://vast-ridge-73699.herokuapp.com/service/order/user/${user.email}`, {
+        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/service/order/user/${user.email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const MyOrders = () => {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        fetch(`https://vast-ridge-73699.herokuapp.com/service/payment/delete/${id}`, {
+                        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/service/payment/delete/${id}`, {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json',

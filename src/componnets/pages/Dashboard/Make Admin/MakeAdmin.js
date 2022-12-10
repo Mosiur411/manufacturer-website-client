@@ -5,7 +5,7 @@ const MakeAdmin = () => {
     const [Admin, setAdmin] = useState([])
     const [AddAdmin, setAddAdmin] = useState(null)
     useEffect(() => {
-        fetch(`https://vast-ridge-73699.herokuapp.com/email`, {
+        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/email`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ const MakeAdmin = () => {
     }, [AddAdmin, Admin])
     const AddAmin = (id) => {
         const email = id;
-        fetch(`https://vast-ridge-73699.herokuapp.com/email/admin/${email}`, {
+        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/email/admin/${email}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
