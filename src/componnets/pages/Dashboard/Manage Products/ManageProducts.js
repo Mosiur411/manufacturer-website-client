@@ -6,7 +6,7 @@ const ManageProducts = () => {
     const [services, setServices] = useState([])
     const [Delete, setDelete] = useState(false)
     useEffect(() => {
-        fetch('https://manufacturer-website-server-production-43c1.up.railway.app/service', {
+        fetch('https://manufacturer-website-server-production-2545.up.railway.app/service', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ const ManageProducts = () => {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/service/delete/${id}`, {
+                        fetch(`https://manufacturer-website-server-production-2545.up.railway.app/service/delete/${id}`, {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json',

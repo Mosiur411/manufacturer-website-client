@@ -23,7 +23,7 @@ const AddProduct = () => {
                     const addProduct = {
                         images, name, AvailableStok, Quantity, prices,Message
                     }
-                    fetch('https://manufacturer-website-server-production-43c1.up.railway.app/services', {
+                    fetch('https://manufacturer-website-server-production-2545.up.railway.app/service', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

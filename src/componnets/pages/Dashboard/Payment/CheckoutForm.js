@@ -12,7 +12,7 @@ const CheckoutForm = ({ MyPayment }) => {
     const Navigate=useNavigate()
     useEffect((MyPayment) => {
         const price = 100;
-        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/create-payment-intent`, {
+        fetch(`https://manufacturer-website-server-production-2545.up.railway.app/create-payment-intent`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ const CheckoutForm = ({ MyPayment }) => {
                 Amount: paymentIntent?.amount,
             }
             if (paymentIntent) {
-                fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/service/success/payment/${MyPayment?._id}`, {
+                fetch(`https://manufacturer-website-server-production-2545.up.railway.app/service/success/payment/${MyPayment?._id}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json'

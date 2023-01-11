@@ -11,7 +11,7 @@ const Payment = () => {
     const [Payment, setPayment] = useState({})
     const { OrderName, OrderImages, email, OrderPrice, Pic: size, Number } = Payment
     useEffect(() => {
-        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/service/order/payment/${id}`, {
+        fetch(`https://manufacturer-website-server-production-2545.up.railway.app/service/order/payment/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

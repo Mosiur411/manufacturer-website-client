@@ -7,7 +7,7 @@ const UserToken = user => {
             const email = user?.user?.email;
             console.log(email)
             const userEmail = { email: email }
-            fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/email/${email}`, {
+            fetch(`https://manufacturer-website-server-production-2545.up.railway.app/email/${email}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

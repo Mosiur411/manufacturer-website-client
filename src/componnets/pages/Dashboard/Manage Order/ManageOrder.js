@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const ManageOrder = () => {
     const [Manages, setManages] = useState([])
     useEffect(() => {
-        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/service/Order/ALL`, {
+        fetch(`https://manufacturer-website-server-production-2545.up.railway.app/service/Order/ALL`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ const ManageOrder = () => {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/service/Order/ALLdelete/${id}`, {
+                        fetch(`https://manufacturer-website-server-production-2545.up.railway.app/service/Order/ALLdelete/${id}`, {
                             method: 'DELETE',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ const ManageOrder = () => {
 
     }
     const Pending = (id) => {
-        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/service/Order/pending/${id}`, {
+        fetch(`https://manufacturer-website-server-production-2545.up.railway.app/service/Order/pending/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

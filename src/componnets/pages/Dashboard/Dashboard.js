@@ -11,7 +11,7 @@ const Dashboard = () => {
 
 
     useEffect(() => {
-        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/email/admin/${user.email}`, {
+        fetch(`https://manufacturer-website-server-production-2545.up.railway.app/email/admin/${user.email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

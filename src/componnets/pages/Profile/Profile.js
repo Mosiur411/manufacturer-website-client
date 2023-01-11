@@ -18,7 +18,7 @@ const MyProfile = () => {
         const Date = event.target.Date.value;
         const Profile = { Education: Education, Address: Address, Number: number, Date: Date }
         if (Profile) {
-            fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/email/user/${user.email}`, {
+            fetch(`https://manufacturer-website-server-production-2545.up.railway.app/email/user/${user.email}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ const MyProfile = () => {
         }
     }
     useEffect(() => {
-        fetch(`https://manufacturer-website-server-production-43c1.up.railway.app/email/MyProfile/${user?.email}`, {
+        fetch(`https://manufacturer-website-server-production-2545.up.railway.app/email/MyProfile/${user?.email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
